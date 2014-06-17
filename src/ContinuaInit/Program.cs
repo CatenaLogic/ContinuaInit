@@ -9,6 +9,7 @@ namespace ContinuaInit
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using Catel.IoC;
     using Catel.Logging;
     using Catel.Reflection;
@@ -62,7 +63,10 @@ namespace ContinuaInit
                 }
 
 #if DEBUG
-                WaitForKeyPress();
+                if (Debugger.IsAttached)
+                {
+                    WaitForKeyPress();
+                }
 #endif
 
                 return 0;
