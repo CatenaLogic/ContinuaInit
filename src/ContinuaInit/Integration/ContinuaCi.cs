@@ -15,7 +15,9 @@ namespace ContinuaInit.Integration
     {
         public override bool CanApplyToCurrentContext()
         {
+#if DEBUG
             return true;
+#endif
 
             const string KeyName = @"Software\VSoft Technologies\Continua CI Agent";
 
