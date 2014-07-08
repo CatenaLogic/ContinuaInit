@@ -20,7 +20,7 @@ namespace ContinuaInit.Test.Integration
             var versionBuilder = new ContinuaCi();
 
             var continuaCiCommand = versionBuilder.GenerateSetParameterMessage(new Parameter("Var1", true));
-            Assert.AreEqual("@@continua[setVariable name='Var1' value='True']", continuaCiCommand);
+            Assert.AreEqual("@@continua[setVariable name='Var1' value='True' skipIfNotDefined='true']", continuaCiCommand);
         }
     }
 }
