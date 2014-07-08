@@ -15,7 +15,9 @@ namespace ContinuaInit.Integration
     {
         public override bool CanApplyToCurrentContext()
         {
+#if DEBUG
             return true;
+#endif
 
             const string KeyName = @"Software\VSoft Technologies\Continua CI Agent";
 
@@ -36,7 +38,7 @@ namespace ContinuaInit.Integration
         {
             Argument.IsNotNull(() => parameter);
 
-            return string.Format("@@continua[setVariable name='{0}' value='{1}']", parameter.Name, parameter.Value);
+            return string.Format("@@continua[setVariable name='{0}' value='{1}' skipIfNotDefined='true']", parameter.Name, parameter.Value);
         }
 
         private static bool RegistryKeyExists(string keyName, RegistryView registryView)
