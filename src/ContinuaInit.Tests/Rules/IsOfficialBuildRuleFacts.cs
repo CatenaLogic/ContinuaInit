@@ -8,12 +8,12 @@
 namespace ContinuaInit.Test.Rules
 {
     using ContinuaInit.Rules;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
-    [TestClass]
+    [TestFixture]
     public class IsOfficialBuildRuleFacts
     {
-        [TestMethod]
+        [TestCase]
         public void ReturnsTrueForMasterBranch()
         {
             var context = new Context
@@ -25,7 +25,7 @@ namespace ContinuaInit.Test.Rules
             Assert.AreEqual("True", rule.GetParameter(context).Value);
         }
 
-        [TestMethod]
+        [TestCase]
         public void ReturnsFalseForDevelopBranch()
         {
             var context = new Context

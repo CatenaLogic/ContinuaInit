@@ -8,14 +8,14 @@
 namespace ContinuaInit.Test
 {
     using Catel.Test;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     public class ContextFacts
     {
-        [TestClass]
+        [TestFixture]
         public class TheValidateContextMethod
         {
-            [TestMethod]
+            [TestCase]
             public void ThrowsExceptionForMissingSolutionDirectory()
             {
                 var context = new Context();
@@ -23,7 +23,7 @@ namespace ContinuaInit.Test
                 ExceptionTester.CallMethodAndExpectException<ContinuaInitException>(() => context.ValidateContext());
             }
 
-            [TestMethod]
+            [TestCase]
             public void ThrowsExceptionForMissingBranchName()
             {
                 var context = new Context
@@ -34,7 +34,7 @@ namespace ContinuaInit.Test
                 ExceptionTester.CallMethodAndExpectException<ContinuaInitException>(() => context.ValidateContext());
             }
 
-            [TestMethod]
+            [TestCase]
             public void ThrowsExceptionForMissingVersion()
             {
                 var context = new Context
@@ -45,7 +45,7 @@ namespace ContinuaInit.Test
                 ExceptionTester.CallMethodAndExpectException<ContinuaInitException>(() => context.ValidateContext());
             }
 
-            [TestMethod]
+            [TestCase]
             public void SucceedsForValidContext()
             {
                 var context = new Context

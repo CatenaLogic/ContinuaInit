@@ -8,13 +8,13 @@
 namespace ContinuaInit.Test.Integration
 {
     using ContinuaInit.Integration;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Models;
+    using NUnit.Framework;
 
-    [TestClass]
+    [TestFixture]
     public class ContinuaCiFacts
     {
-        [TestMethod]
+        [TestCase]
         public void GenerateBuildVersion()
         {
             var versionBuilder = new ContinuaCi();

@@ -8,12 +8,12 @@
 namespace ContinuaInit.Test.Rules
 {
     using ContinuaInit.Rules;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
-    [TestClass]
+    [TestFixture]
     public class PublishTypeRuleFacts
     {
-        [TestMethod]
+        [TestCase]
         public void ReturnsOfficialForMasterBranch()
         {
             var context = new Context
@@ -25,7 +25,7 @@ namespace ContinuaInit.Test.Rules
             Assert.AreEqual("Official", rule.GetParameter(context).Value);
         }
 
-        [TestMethod]
+        [TestCase]
         public void ReturnsNightlyForDevelopBranch()
         {
             var context = new Context

@@ -8,18 +8,18 @@
 namespace ContinuaInit.Test
 {
     using Catel.Test;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
-    [TestClass]
+    [TestFixture]
     public class ArgumentParserFacts
     {
-        [TestMethod]
+        [TestCase]
         public void ThrowsExceptionForEmptyParameters()
         {
             ExceptionTester.CallMethodAndExpectException<ContinuaInitException>(() => ArgumentParser.ParseArguments(string.Empty));
         }
 
-        [TestMethod]
+        [TestCase]
         public void CorrectlyParsesBranchName()
         {
             var context = ArgumentParser.ParseArguments("-b develop");
@@ -27,7 +27,7 @@ namespace ContinuaInit.Test
             Assert.AreEqual("develop", context.BranchName);
         }
 
-        [TestMethod]
+        [TestCase]
         public void CorrectlyParsesVersion()
         {
             var context = ArgumentParser.ParseArguments("-v 1.0.0-unstable001");
@@ -35,7 +35,7 @@ namespace ContinuaInit.Test
             Assert.AreEqual("1.0.0-unstable001", context.Version);
         }
 
-        [TestMethod]
+        [TestCase]
         public void CorrectlyParsesCi()
         {
             var context = ArgumentParser.ParseArguments("-ci true");
@@ -43,7 +43,7 @@ namespace ContinuaInit.Test
             Assert.IsTrue(context.IsCi);
         }
 
-        [TestMethod]
+        [TestCase]
         public void CorrectlyParsesLogFilePath()
         {
             var context = ArgumentParser.ParseArguments("-l logFilePath");
@@ -51,7 +51,7 @@ namespace ContinuaInit.Test
             Assert.AreEqual("logFilePath", context.LogFile);
         }
 
-        [TestMethod]
+        [TestCase]
         public void CorrectlyParsesHelp()
         {
             var context = ArgumentParser.ParseArguments("-h");
@@ -59,7 +59,7 @@ namespace ContinuaInit.Test
             Assert.IsTrue(context.IsHelp);
         }
 
-        [TestMethod]
+        [TestCase]
         public void CorrectlyParsesBranchNameAndVersion()
         {
             var context = ArgumentParser.ParseArguments("-b develop -v 1.0.0-unstable001");
@@ -68,13 +68,13 @@ namespace ContinuaInit.Test
             Assert.AreEqual("1.0.0-unstable001", context.Version);
         }
 
-        [TestMethod]
+        [TestCase]
         public void ThrowsExceptionForInvalidNumberOfArguments()
         {
             ExceptionTester.CallMethodAndExpectException<ContinuaInitException>(() => ArgumentParser.ParseArguments("-l logFilePath extraArg"));
         }
 
-        [TestMethod]
+        [TestCase]
         public void ThrowsExceptionForUnknownArgument()
         {
             ExceptionTester.CallMethodAndExpectException<ContinuaInitException>(() => ArgumentParser.ParseArguments("solutionDirectory -x logFilePath"));
