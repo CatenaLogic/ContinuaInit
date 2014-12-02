@@ -7,6 +7,7 @@
 
 namespace ContinuaInit.Logging
 {
+    using System;
     using Catel.Logging;
 
     public class OutputLogListener : ConsoleLogListener
@@ -17,7 +18,7 @@ namespace ContinuaInit.Logging
             IsDebugEnabled = true;
         }
 
-        protected override string FormatLogEvent(ILog log, string message, LogEvent logEvent, object extraData)
+        protected override string FormatLogEvent(ILog log, string message, LogEvent logEvent, object extraData, DateTime time)
         {
             return message;
         }
