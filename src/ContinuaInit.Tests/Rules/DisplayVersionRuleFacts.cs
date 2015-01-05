@@ -36,7 +36,7 @@ namespace ContinuaInit.Test.Rules
             };
             var rule = new DisplayVersionRule();
 
-            Assert.AreEqual("1.0.0-unstable0001 nightly", rule.GetParameter(context).Value);
+            Assert.AreEqual("1.0.0-unstable0001", rule.GetParameter(context).Value);
         }
 
         [TestCase]
