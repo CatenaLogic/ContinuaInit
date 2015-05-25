@@ -15,8 +15,21 @@ namespace ContinuaInit.Rules
         {
             var parameter = new Parameter("PublishType");
 
-            parameter.Value = context.BranchName.IsMaster() ? "Official" : "Nightly";
+            parameter.Value = "Unknown";
 
+            if (context.Version.IsOfficial())
+            {
+                parameter.Value = "Official";
+            }
+            else if (context.Version.IsBeta())
+            {
+                parameter.Value = "Beta";
+            }
+            else if (context.Version.IsAlpha())
+            {
+                parameter.Value = "Alpha";
+            }
+            
             return parameter;
         }
     }

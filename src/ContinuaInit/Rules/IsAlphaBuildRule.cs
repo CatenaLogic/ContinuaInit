@@ -9,11 +9,11 @@ namespace ContinuaInit.Rules
 {
     using Models;
 
-    public class IsOfficialBuildRule : RuleBase
+    public class IsAlphaBuildRule : RuleBase
     {
         public override Parameter GetParameter(Context context)
         {
-            return new Parameter("IsOfficialBuild", context.Version.IsOfficial());
+            return new Parameter("IsAlphaBuild", context.Version.IsAlpha());
         }
     }
 }

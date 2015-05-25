@@ -13,28 +13,19 @@ namespace ContinuaInit.Test.Rules
     [TestFixture]
     public class PublishTypeRuleFacts
     {
-        [TestCase]
-        public void ReturnsOfficialForMasterBranch()
+        [TestCase("2.0.0-unstable.493", "Alpha")]
+        [TestCase("2.0.0-beta.493", "Beta")]
+        [TestCase("2.0.0", "Official")]
+        public void ReturnsRightValue(string versionInput, string expectedOutput)
         {
             var context = new Context
             {
-                BranchName = "master"
+                Version = versionInput
             };
+
             var rule = new PublishTypeRule();
 
-            Assert.AreEqual("Official", rule.GetParameter(context).Value);
-        }
-
-        [TestCase]
-        public void ReturnsNightlyForDevelopBranch()
-        {
-            var context = new Context
-            {
-                BranchName = "develop"
-            };
-            var rule = new PublishTypeRule();
-
-            Assert.AreEqual("Nightly", rule.GetParameter(context).Value);
+            Assert.AreEqual(expectedOutput.ToLower(), rule.GetParameter(context).Value.ToLower());
         }
     }
 }

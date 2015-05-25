@@ -81,6 +81,8 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="HelpWriter.cs" />
     <Compile Include="Rules\DisplayVersionRule.cs" />
+    <Compile Include="Rules\IsBetaBuildRule.cs" />
+    <Compile Include="Rules\IsAlphaBuildRule.cs" />
     <Compile Include="Rules\RuleBase.cs" />
     <Compile Include="Rules\PublishTypeRule.cs" />
     <Compile Include="Rules\IsNightlyBuildRule.cs" />

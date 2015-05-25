@@ -19,7 +19,7 @@ namespace ContinuaInit.Rules
             {
                 parameter.Value += " ci";
             }
-            //else if (!context.BranchName.IsMaster())
+            //else if (!context.BranchName.IsOfficial())
             //{
             //    parameter.Value += " nightly";
             //}

@@ -84,6 +84,8 @@
     <Compile Include="Integration\ContinuaCiFacts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rules\DisplayVersionRuleFacts.cs" />
+    <Compile Include="Rules\IsBetaBuildRuleFacts.cs" />
+    <Compile Include="Rules\IsAlphaBuildRuleFacts.cs" />
     <Compile Include="Rules\PublishTypeRuleFacts.cs" />
     <Compile Include="Rules\IsOfficialBuildRuleFacts.cs" />
     <Compile Include="Rules\IsNightlyBuildRuleFacts.cs" />

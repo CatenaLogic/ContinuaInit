@@ -11,9 +11,9 @@ namespace ContinuaInit.Test.Rules
     using NUnit.Framework;
 
     [TestFixture]
-    public class IsNightlyBuildRuleFacts
+    public class IsBetaBuildRuleFacts
     {
-        [TestCase("2.0.0-unstable.493", true)]
+        [TestCase("2.0.0-unstable.493", false)]
         [TestCase("2.0.0-beta.493", true)]
         [TestCase("2.0.0", false)]
         public void ReturnsRightValue(string versionInput, bool expectedOutput)
@@ -23,7 +23,7 @@ namespace ContinuaInit.Test.Rules
                 Version = versionInput
             };
 
-            var rule = new IsNightlyBuildRule();
+            var rule = new IsBetaBuildRule();
 
             Assert.AreEqual(expectedOutput.ToString().ToLower(), rule.GetParameter(context).Value.ToLower());
         }
