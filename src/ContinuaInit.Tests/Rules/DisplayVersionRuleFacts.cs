@@ -8,12 +8,12 @@
 namespace ContinuaInit.Test.Rules
 {
     using ContinuaInit.Rules;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
-    [TestClass]
+    [TestFixture]
     public class DisplayVersionRuleFacts
     {
-        [TestMethod]
+        [TestCase]
         public void ReturnsFalseForMasterBranch()
         {
             var context = new Context
@@ -26,7 +26,7 @@ namespace ContinuaInit.Test.Rules
             Assert.AreEqual("1.0.0", rule.GetParameter(context).Value);
         }
 
-        [TestMethod]
+        [TestCase]
         public void ReturnsTrueForDevelopBranch()
         {
             var context = new Context
@@ -36,10 +36,10 @@ namespace ContinuaInit.Test.Rules
             };
             var rule = new DisplayVersionRule();
 
-            Assert.AreEqual("1.0.0-unstable0001 nightly", rule.GetParameter(context).Value);
+            Assert.AreEqual("1.0.0-unstable0001", rule.GetParameter(context).Value);
         }
 
-        [TestMethod]
+        [TestCase]
         public void ReturnsTrueForDevelopBranchWithCiBuild()
         {
             var context = new Context

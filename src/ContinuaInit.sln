@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{9DDB4D61-1
 		SolutionAssemblyInfo.cs = SolutionAssemblyInfo.cs
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContinuaInit.Test", "ContinuaInit.Test\ContinuaInit.Test.csproj", "{E8367BE8-78E4-475C-8591-7D6894B0C813}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContinuaInit.Tests", "ContinuaInit.Tests\ContinuaInit.Tests.csproj", "{E8367BE8-78E4-475C-8591-7D6894B0C813}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

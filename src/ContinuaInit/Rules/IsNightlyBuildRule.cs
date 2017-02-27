@@ -13,7 +13,7 @@ namespace ContinuaInit.Rules
     {
         public override Parameter GetParameter(Context context)
         {
-            return new Parameter("IsNightlyBuild", !context.BranchName.IsMaster());
+            return new Parameter("IsNightlyBuild", !context.Version.IsOfficial());
         }
     }
 }

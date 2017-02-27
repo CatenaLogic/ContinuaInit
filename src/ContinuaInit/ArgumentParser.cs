@@ -33,7 +33,7 @@ namespace ContinuaInit
 
             if (commandLineArguments.Count == 0)
             {
-                Log.ErrorAndThrowException<ContinuaInitException>("Invalid number of arguments");
+                throw Log.ErrorAndCreateException<ContinuaInitException>("Invalid number of arguments");
             }
 
             var firstArgument = commandLineArguments.First();
@@ -45,7 +45,7 @@ namespace ContinuaInit
 
             if (commandLineArguments.Count < 2)
             {
-                Log.ErrorAndThrowException<ContinuaInitException>("Invalid number of arguments");
+                throw Log.ErrorAndCreateException<ContinuaInitException>("Invalid number of arguments");
             }
 
             var namedArguments = commandLineArguments.ToList();
@@ -83,7 +83,7 @@ namespace ContinuaInit
                     continue;
                 }
 
-                Log.ErrorAndThrowException<ContinuaInitException>("Could not parse command line parameter '{0}'.", name);
+                throw Log.ErrorAndCreateException<ContinuaInitException>("Could not parse command line parameter '{0}'.", name);
             }
 
             return context;
@@ -108,7 +108,7 @@ namespace ContinuaInit
         {
             if (namedArguments.Count.IsOdd())
             {
-                Log.ErrorAndThrowException<ContinuaInitException>("Could not parse arguments: '{0}'.", string.Join(" ", commandLineArguments));
+                throw Log.ErrorAndCreateException<ContinuaInitException>("Could not parse arguments: '{0}'.", string.Join(" ", commandLineArguments));
             }
         }
 

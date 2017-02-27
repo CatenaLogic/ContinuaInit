@@ -1,6 +1,15 @@
 ContinuaInit
 ============
 
+[![Join the chat at https://gitter.im/CatenaLogic/ContinuaInit](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/CatenaLogic/ContinuaInit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+![License](https://img.shields.io/github/license/catenalogic/continuainit.svg)
+![NuGet downloads](https://img.shields.io/nuget/dt/continuainit.svg)
+![Version](https://img.shields.io/nuget/v/continuainit.svg)
+![Pre-release version](https://img.shields.io/nuget/vpre/continuainit.svg)
+![Chocolatey count](https://img.shields.io/chocolatey/dt/continuainit.svg)
+![Chocolatey version](https://img.shields.io/chocolatey/v/continuainit.svg)
+
 ![ContinuaInit](design/logo/logo_64.png)
 
 ContinuaInit initializes several variables in a configuration for you. This console application will automatically integrate with Continua CI and set several variables based on the current context.

@@ -8,33 +8,24 @@
 namespace ContinuaInit.Test.Rules
 {
     using ContinuaInit.Rules;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
-    [TestClass]
+    [TestFixture]
     public class IsOfficialBuildRuleFacts
     {
-        [TestMethod]
-        public void ReturnsTrueForMasterBranch()
+        [TestCase("2.0.0-unstable.493", false)]
+        [TestCase("2.0.0-beta.493", false)]
+        [TestCase("2.0.0", true)]
+        public void ReturnsRightValue(string versionInput, bool expectedOutput)
         {
             var context = new Context
             {
-                BranchName = "master"
+                Version = versionInput
             };
+
             var rule = new IsOfficialBuildRule();
 
-            Assert.AreEqual("True", rule.GetParameter(context).Value);
-        }
-
-        [TestMethod]
-        public void ReturnsFalseForDevelopBranch()
-        {
-            var context = new Context
-            {
-                BranchName = "develop"
-            };
-            var rule = new IsOfficialBuildRule();
-
-            Assert.AreEqual("False", rule.GetParameter(context).Value);
+            Assert.AreEqual(expectedOutput.ToString().ToLower(), rule.GetParameter(context).Value.ToLower());
         }
     }
 }
