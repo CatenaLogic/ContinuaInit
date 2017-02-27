@@ -8,6 +8,7 @@
 namespace ContinuaInit
 {
     using System;
+    using Catel;
 
     public static class StringExtensions
     {
@@ -18,7 +19,7 @@ namespace ContinuaInit
                 return false;
             }
 
-            if (versionValue.ToLower().Contains("-"))
+            if (versionValue.ContainsIgnoreCase("-"))
             {
                 return false;
             }
@@ -34,7 +35,8 @@ namespace ContinuaInit
                 return false;
             }
 
-            return versionValue.ToLower().Contains("-unstable");
+            return versionValue.ContainsIgnoreCase("-alpha") ||
+                   versionValue.ContainsIgnoreCase("-unstable");
         }
 
         public static bool IsBeta(this string versionValue)
@@ -44,7 +46,7 @@ namespace ContinuaInit
                 return false;
             }
 
-            return versionValue.ToLower().Contains("-beta");
+            return versionValue.ContainsIgnoreCase("-beta");
         }
     }
 }

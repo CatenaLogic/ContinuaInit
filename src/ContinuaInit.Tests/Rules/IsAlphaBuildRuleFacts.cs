@@ -13,6 +13,8 @@ namespace ContinuaInit.Test.Rules
     [TestFixture]
     public class IsAlphaBuildRuleFacts
     {
+        [TestCase("2.0.0-Alpha.493", true)]
+        [TestCase("2.0.0-alpha.493", true)]
         [TestCase("2.0.0-unstable.493", true)]
         [TestCase("2.0.0-beta.493", false)]
         [TestCase("2.0.0", false)]
