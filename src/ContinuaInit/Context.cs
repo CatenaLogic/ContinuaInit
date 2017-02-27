@@ -28,12 +28,12 @@ namespace ContinuaInit
         {
             if (string.IsNullOrEmpty(BranchName))
             {
-                Log.ErrorAndThrowException<ContinuaInitException>("Branch name is missing");
+                throw Log.ErrorAndCreateException<ContinuaInitException>("Branch name is missing");
             }
 
             if (string.IsNullOrEmpty(Version))
             {
-                Log.ErrorAndThrowException<ContinuaInitException>("Version name is missing");
+                throw Log.ErrorAndCreateException<ContinuaInitException>("Version name is missing");
             }
         }
     }
