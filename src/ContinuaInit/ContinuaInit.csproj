@@ -59,6 +59,9 @@
     <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\lib\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
     </Reference>
+    <Reference Include="Semver, Version=2.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\Semver.2.0.4\lib\net452\Semver.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
@@ -76,11 +79,15 @@
     <Compile Include="Context.cs" />
     <Compile Include="Exceptions\ContinuaInitException.cs" />
     <Compile Include="Extensions\IntExtensions.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\SemVersionExtensions.cs" />
+    <Compile Include="Helpers\VersionParser.cs" />
     <Compile Include="HelpWriter.cs" />
-    <Compile Include="Rules\DisplayVersionRule.cs" />
+    <Compile Include="Rules\Versioning\DisplayVersionRule.cs" />
     <Compile Include="Rules\IsBetaBuildRule.cs" />
     <Compile Include="Rules\IsAlphaBuildRule.cs" />
+    <Compile Include="Rules\Versioning\FullSemVerVersionRule.cs" />
+    <Compile Include="Rules\Versioning\MajorMinorPatchVersionRule.cs" />
+    <Compile Include="Rules\Versioning\NuGetVersionRule.cs" />
     <Compile Include="Rules\RuleBase.cs" />
     <Compile Include="Rules\PublishTypeRule.cs" />
     <Compile Include="Rules\IsNightlyBuildRule.cs" />

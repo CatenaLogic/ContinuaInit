@@ -7,23 +7,34 @@
 
 namespace ContinuaInit.Rules
 {
+    using System;
     using Models;
 
     public class DisplayVersionRule : RuleBase
     {
         public override Parameter GetParameter(Context context)
         {
-            var parameter = new Parameter("DisplayVersion", context.Version);
+            var version = context.Version;
+
+            var realVersion = new Version(version.Major, version.Minor, version.Patch);
+            var value = realVersion.ToString(3);
+
+            if (!string.IsNullOrWhiteSpace(version.Prerelease))
+            {
+                value += $"-{version.Prerelease}";
+            }
+
+            if (!string.IsNullOrWhiteSpace(version.Build))
+            {
+                value += $".{version.Build}";
+            }
 
             if (context.IsCi)
             {
-                parameter.Value += " ci";
+                value += " ci";
             }
-            //else if (!context.BranchName.IsOfficial())
-            //{
-            //    parameter.Value += " nightly";
-            //}
 
+            var parameter = new Parameter("DisplayVersion", value);
             return parameter;
         }
     }

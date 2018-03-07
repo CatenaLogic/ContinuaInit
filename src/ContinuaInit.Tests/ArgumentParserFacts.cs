@@ -32,7 +32,7 @@ namespace ContinuaInit.Test
         {
             var context = ArgumentParser.ParseArguments("-v 1.0.0-unstable001");
 
-            Assert.AreEqual("1.0.0-unstable001", context.Version);
+            Assert.AreEqual("1.0.0-alpha001", context.Version.ToString());
         }
 
         [TestCase]
@@ -65,7 +65,7 @@ namespace ContinuaInit.Test
             var context = ArgumentParser.ParseArguments("-b develop -v 1.0.0-unstable001");
 
             Assert.AreEqual("develop", context.BranchName);
-            Assert.AreEqual("1.0.0-unstable001", context.Version);
+            Assert.AreEqual("1.0.0-alpha001", context.Version.ToString());
         }
 
         [TestCase]

@@ -8,6 +8,7 @@
 namespace ContinuaInit
 {
     using Catel.Logging;
+    using Semver;
 
     public class Context
     {
@@ -21,7 +22,7 @@ namespace ContinuaInit
         public string LogFile { get; set; }
 
         public string BranchName { get; set; }
-        public string Version { get; set; }
+        public SemVersion Version { get; set; }
         public bool IsCi { get; set; }
 
         public void ValidateContext()
@@ -31,7 +32,7 @@ namespace ContinuaInit
                 throw Log.ErrorAndCreateException<ContinuaInitException>("Branch name is missing");
             }
 
-            if (string.IsNullOrEmpty(Version))
+            if (Version == null)
             {
                 throw Log.ErrorAndCreateException<ContinuaInitException>("Version name is missing");
             }
