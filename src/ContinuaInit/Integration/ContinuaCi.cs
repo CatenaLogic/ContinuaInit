@@ -34,6 +34,13 @@ namespace ContinuaInit.Integration
             return false;
         }
 
+        public override string GenerateSetVersionMessage(BuildVersionParameter parameter)
+        {
+            Argument.IsNotNull(() => parameter);
+
+            return string.Format("@@continua[setBuildVersion value='{0}']", parameter.Value);
+        }
+
         public override string GenerateSetParameterMessage(Parameter parameter)
         {
             Argument.IsNotNull(() => parameter);

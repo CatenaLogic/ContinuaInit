@@ -9,6 +9,7 @@ namespace ContinuaInit.Test.Rules
 {
     using ContinuaInit.Rules;
     using NUnit.Framework;
+    using Semver;
 
     [TestFixture]
     public class DisplayVersionRuleFacts
@@ -19,7 +20,7 @@ namespace ContinuaInit.Test.Rules
             var context = new Context
             {
                 BranchName = "master",
-                Version = "1.0.0"
+                Version = VersionParser.Parse("1.0.0")
             };
             var rule = new DisplayVersionRule();
 
@@ -32,11 +33,11 @@ namespace ContinuaInit.Test.Rules
             var context = new Context
             {
                 BranchName = "develop",
-                Version = "1.0.0-unstable0001"
+                Version = VersionParser.Parse("1.0.0-unstable0001")
             };
             var rule = new DisplayVersionRule();
 
-            Assert.AreEqual("1.0.0-unstable0001", rule.GetParameter(context).Value);
+            Assert.AreEqual("1.0.0-alpha0001", rule.GetParameter(context).Value);
         }
 
         [TestCase]
@@ -45,12 +46,12 @@ namespace ContinuaInit.Test.Rules
             var context = new Context
             {
                 BranchName = "develop",
-                Version = "1.0.0-unstable0001",
+                Version = VersionParser.Parse("1.0.0-unstable0001"),
                 IsCi = true
             };
             var rule = new DisplayVersionRule();
 
-            Assert.AreEqual("1.0.0-unstable0001 ci", rule.GetParameter(context).Value);
+            Assert.AreEqual("1.0.0-alpha0001 ci", rule.GetParameter(context).Value);
         }
     }
 }

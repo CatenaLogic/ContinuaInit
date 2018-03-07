@@ -12,6 +12,7 @@ namespace ContinuaInit
     using System.Linq;
     using System.Runtime.CompilerServices;
     using Catel.Logging;
+    using Semver;
 
     public static class ArgumentParser
     {
@@ -71,7 +72,7 @@ namespace ContinuaInit
 
                 if (IsSwitch("v", name))
                 {
-                    context.Version = value;
+                    context.Version = VersionParser.Parse(value);
                     continue;
                 }
 

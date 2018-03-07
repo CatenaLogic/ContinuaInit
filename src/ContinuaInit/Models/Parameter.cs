@@ -9,7 +9,7 @@ namespace ContinuaInit.Models
 {
     using Catel;
 
-    public class Parameter
+    public class Parameter : IParameter
     {
         public Parameter(string name, object value = null)
         {
@@ -26,5 +26,10 @@ namespace ContinuaInit.Models
         public string Name { get; private set; }
 
         public string Value { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Name} => {Value}";
+        }
     }
 }

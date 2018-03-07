@@ -9,6 +9,7 @@ namespace ContinuaInit.Test
 {
     using Catel.Test;
     using NUnit.Framework;
+    using Semver;
 
     public class ContextFacts
     {
@@ -28,7 +29,7 @@ namespace ContinuaInit.Test
             {
                 var context = new Context
                 {
-                    Version = "1.0"
+                    Version = VersionParser.Parse("1.0")
                 };
 
                 ExceptionTester.CallMethodAndExpectException<ContinuaInitException>(() => context.ValidateContext());
@@ -51,7 +52,7 @@ namespace ContinuaInit.Test
                 var context = new Context
                 {
                     BranchName = "master",
-                    Version = "1.0"
+                    Version = VersionParser.Parse("1.0")
                 };
 
                 // should not throw

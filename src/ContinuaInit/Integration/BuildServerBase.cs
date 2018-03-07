@@ -16,15 +16,27 @@ namespace ContinuaInit.Integration
     {
         public abstract bool CanApplyToCurrentContext();
         public abstract string GenerateSetParameterMessage(Parameter parameter);
+        public abstract string GenerateSetVersionMessage(BuildVersionParameter parameter);
 
-        public virtual void WriteIntegration(IEnumerable<Parameter> parameters, Action<string> writer)
+        public virtual void WriteIntegration(IEnumerable<IParameter> parameters, Action<string> writer)
         {
             Argument.IsNotNull(() => writer);
 
             foreach (var buildParameter in parameters)
             {
-                var parameterString = GenerateSetParameterMessage(buildParameter);
-                writer(parameterString);
+                var buildVersionParameter = buildParameter as BuildVersionParameter;
+                if (buildVersionParameter != null)
+                {
+                    var parameterString = GenerateSetVersionMessage(buildVersionParameter);
+                    writer(parameterString);
+                }
+
+                var parameter = buildParameter as Parameter;
+                if (parameter != null)
+                {
+                    var parameterString = GenerateSetParameterMessage(parameter);
+                    writer(parameterString);
+                }
             }
         }
     }

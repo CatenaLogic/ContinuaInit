@@ -9,6 +9,7 @@ namespace ContinuaInit.Test.Rules
 {
     using ContinuaInit.Rules;
     using NUnit.Framework;
+    using Semver;
 
     [TestFixture]
     public class IsAlphaBuildRuleFacts
@@ -22,12 +23,15 @@ namespace ContinuaInit.Test.Rules
         {
             var context = new Context
             {
-                Version = versionInput
+                Version = VersionParser.Parse(versionInput)
             };
 
             var rule = new IsAlphaBuildRule();
 
-            Assert.AreEqual(expectedOutput.ToString().ToLower(), rule.GetParameter(context).Value.ToLower());
+            var expected = expectedOutput.ToString().ToLower();
+            var actual = rule.GetParameter(context).Value.ToLower();
+
+            Assert.AreEqual(expected, actual);
         }
     }
 }

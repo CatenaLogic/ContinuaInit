@@ -48,7 +48,7 @@ namespace ContinuaInit
                     return 0;
                 }
 
-                var parameters = new List<Parameter>();
+                var parameters = new List<IParameter>();
                 var typeFactory = TypeFactory.Default;
                 var initTypes = TypeCache.GetTypes(x => typeof (RuleBase).IsAssignableFromEx(x) && !x.IsAbstract);
                 foreach (var initType in initTypes)

@@ -12,24 +12,24 @@ namespace ContinuaInit.Test.Rules
     using Semver;
 
     [TestFixture]
-    public class IsOfficialBuildRuleFacts
+    public class FullSemVerVersionRuleFacts
     {
-        [TestCase("2.0.0-unstable.493", false)]
-        [TestCase("2.0.0-beta.493", false)]
-        [TestCase("2.0.0", true)]
-        public void ReturnsRightValue(string versionInput, bool expectedOutput)
+        [TestCase("2.1.0", "2.1.0")]
+        [TestCase("2.1.0-unstable.2", "2.1.0-alpha.2")]
+        [TestCase("2.1.0-alpha.2", "2.1.0-alpha.2")]
+        [TestCase("2.1.0-beta.2", "2.1.0-beta.2")]
+        public void ReturnsVersion(string input, string expectedOutput)
         {
             var context = new Context
             {
-                Version = VersionParser.Parse(versionInput)
+                BranchName = "master",
+                Version = VersionParser.Parse(input)
             };
 
-            var rule = new IsOfficialBuildRule();
+            var rule = new FullSemVerVersionRule();
+            var actualOutput = rule.GetParameter(context).Value;
 
-            var expected = expectedOutput.ToString().ToLower();
-            var actual = rule.GetParameter(context).Value.ToLower();
-
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expectedOutput, actualOutput);
         }
     }
 }

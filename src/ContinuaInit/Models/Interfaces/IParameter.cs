@@ -1,16 +1,14 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="InitRule.cs" company="CatenaLogic">
-//   Copyright (c) 2014 - 2014 CatenaLogic. All rights reserved.
+// <copyright file="IParameter.cs" company="CatenaLogic">
+//   Copyright (c) 2014 - 2018 CatenaLogic. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
 
-namespace ContinuaInit.Rules
+namespace ContinuaInit.Models
 {
-    using Models;
-
-    public abstract class RuleBase
+    public interface IParameter
     {
-        public abstract IParameter GetParameter(Context context);
+        string Value { get; }
     }
 }

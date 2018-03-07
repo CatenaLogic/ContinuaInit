@@ -9,6 +9,7 @@ namespace ContinuaInit.Test.Rules
 {
     using ContinuaInit.Rules;
     using NUnit.Framework;
+    using Semver;
 
     [TestFixture]
     public class PublishTypeRuleFacts
@@ -20,12 +21,15 @@ namespace ContinuaInit.Test.Rules
         {
             var context = new Context
             {
-                Version = versionInput
+                Version = VersionParser.Parse(versionInput)
             };
 
             var rule = new PublishTypeRule();
 
-            Assert.AreEqual(expectedOutput.ToLower(), rule.GetParameter(context).Value.ToLower());
+            var expected = expectedOutput.ToLower();
+            var actual = rule.GetParameter(context).Value.ToLower();
+
+            Assert.AreEqual(expected, actual);
         }
     }
 }
