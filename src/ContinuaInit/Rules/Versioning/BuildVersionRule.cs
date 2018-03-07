@@ -1,16 +1,16 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DisplayVersion.cs" company="CatenaLogic">
-//   Copyright (c) 2014 - 2014 CatenaLogic. All rights reserved.
+// <copyright file="BuildVersionRule.cs" company="CatenaLogic">
+//   Copyright (c) 2014 - 2018 CatenaLogic. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
 
-namespace ContinuaInit.Rules
+namespace ContinuaInit.Rules.Versioning
 {
     using System;
     using Models;
 
-    public class DisplayVersionRule : RuleBase
+    public class BuildVersionRule : RuleBase
     {
         public override IParameter GetParameter(Context context)
         {
@@ -34,7 +34,7 @@ namespace ContinuaInit.Rules
                 value += " ci";
             }
 
-            var parameter = new Parameter("DisplayVersion", value);
+            var parameter = new BuildVersionParameter(value);
             return parameter;
         }
     }

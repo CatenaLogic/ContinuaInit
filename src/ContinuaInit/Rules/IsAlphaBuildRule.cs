@@ -11,7 +11,7 @@ namespace ContinuaInit.Rules
 
     public class IsAlphaBuildRule : RuleBase
     {
-        public override Parameter GetParameter(Context context)
+        public override IParameter GetParameter(Context context)
         {
             return new Parameter("IsAlphaBuild", context.Version.IsAlpha());
         }

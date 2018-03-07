@@ -82,6 +82,9 @@
     <Compile Include="Extensions\SemVersionExtensions.cs" />
     <Compile Include="Helpers\VersionParser.cs" />
     <Compile Include="HelpWriter.cs" />
+    <Compile Include="Models\BuildVersionParameter.cs" />
+    <Compile Include="Models\Interfaces\IParameter.cs" />
+    <Compile Include="Rules\Versioning\BuildVersionRule.cs" />
     <Compile Include="Rules\Versioning\DisplayVersionRule.cs" />
     <Compile Include="Rules\IsBetaBuildRule.cs" />
     <Compile Include="Rules\IsAlphaBuildRule.cs" />

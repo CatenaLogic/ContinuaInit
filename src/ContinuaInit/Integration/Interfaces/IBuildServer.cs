@@ -15,6 +15,6 @@ namespace ContinuaInit.Integration
     {
         bool CanApplyToCurrentContext();
 
-        void WriteIntegration(IEnumerable<Parameter> parameters, Action<string> writer);
+        void WriteIntegration(IEnumerable<IParameter> parameters, Action<string> writer);
     }
 }

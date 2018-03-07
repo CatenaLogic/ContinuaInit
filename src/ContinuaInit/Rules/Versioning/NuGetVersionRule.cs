@@ -12,7 +12,7 @@ namespace ContinuaInit.Rules
 
     public class NuGetVersionRule : RuleBase
     {
-        public override Parameter GetParameter(Context context)
+        public override IParameter GetParameter(Context context)
         {
             var version = context.Version;
 

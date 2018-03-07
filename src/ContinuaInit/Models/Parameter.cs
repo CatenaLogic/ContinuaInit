@@ -9,7 +9,7 @@ namespace ContinuaInit.Models
 {
     using Catel;
 
-    public class Parameter
+    public class Parameter : IParameter
     {
         public Parameter(string name, object value = null)
         {
