@@ -7,7 +7,7 @@
 
 namespace ContinuaInit.Test
 {
-    using Catel.Test;
+    using Catel.Tests;
     using NUnit.Framework;
     using Semver;
 
