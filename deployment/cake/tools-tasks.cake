@@ -305,6 +305,7 @@ private void PackageTools()
         // As described in the this issue: https://github.com/NuGet/Home/issues/4360
         // we should not use IsTool, but set BuildOutputTargetFolder instead
         msBuildSettings.WithProperty("BuildOutputTargetFolder", "tools");
+        msBuildSettings.WithProperty("NoDefaultExcludes", "true");
         //msBuildSettings.WithProperty("IsTool", "true");
 
         msBuildSettings.WithProperty("NoBuild", "true");
