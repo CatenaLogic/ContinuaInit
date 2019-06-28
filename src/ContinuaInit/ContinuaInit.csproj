@@ -7,8 +7,7 @@
     <PackageId>ContinuaInit</PackageId>
     <PackageVersion>1.0.0-alpha0001</PackageVersion>
     <Description>
-      ContinuaInit initializes several variables in a configuration for you. This console application will
-      automatically integrate with Continua CI and set several variables based on the current context.
+      ContinuaInit initializes several variables in a configuration for you. This console application will automatically integrate with Continua CI and set several variables based on the current context.
     </Description>
     <PackageTags>continua;ci;command;line;interface;cli</PackageTags>
   </PropertyGroup>

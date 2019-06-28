@@ -9,7 +9,7 @@ using System.Xml.Linq;
 private string GetToolsNuGetRepositoryUrls(string projectName)
 {
     // Allow per project overrides via "NuGetRepositoryUrlFor[ProjectName]"
-    return GetProjectSpecificConfigurationValue(projectName, "ToolsNuGetRepositoryUrlsFor", NuGetRepositoryUrl);
+    return GetProjectSpecificConfigurationValue(projectName, "ToolsNuGetRepositoryUrlsFor", ToolsNuGetRepositoryUrls);
 }
 
 //-------------------------------------------------------------
@@ -17,7 +17,7 @@ private string GetToolsNuGetRepositoryUrls(string projectName)
 private string GetToolsNuGetRepositoryApiKeys(string projectName)
 {
     // Allow per project overrides via "NuGetRepositoryApiKeyFor[ProjectName]"
-    return GetProjectSpecificConfigurationValue(projectName, "ToolsNuGetRepositoryApiKeysFor", NuGetRepositoryApiKey);
+    return GetProjectSpecificConfigurationValue(projectName, "ToolsNuGetRepositoryApiKeysFor", ToolsNuGetRepositoryApiKeys);
 }
 
 //-------------------------------------------------------------
@@ -164,46 +164,8 @@ private void BuildTools()
             {
                 Warning("No SourceLink reference found, automatically injecting SourceLink package reference now");
 
-                //const string MSBuildNS = (XNamespace) "http://schemas.microsoft.com/developer/msbuild/2003";
-
-                var xmlDocument = XDocument.Parse(projectFileContents);
-                var projectElement = xmlDocument.Root;
-
-                // Item group with package reference
-                var referencesItemGroup = new XElement("ItemGroup");
-                var sourceLinkPackageReference = new XElement("PackageReference");
-                sourceLinkPackageReference.Add(new XAttribute("Include", "Microsoft.SourceLink.GitHub"));
-                sourceLinkPackageReference.Add(new XAttribute("Version", "1.0.0-beta-63127-02"));
-                sourceLinkPackageReference.Add(new XAttribute("PrivateAssets", "all"));
-
-                referencesItemGroup.Add(sourceLinkPackageReference);
-                projectElement.Add(referencesItemGroup);
-
-                // Item group with source root
-                // <SourceRoot Include="{repository root}" RepositoryUrl="{repository url}"/>
-                var sourceRootItemGroup = new XElement("ItemGroup");
-                var sourceRoot = new XElement("SourceRoot");
-
-                // Required to end with a \
-                var sourceRootValue = RootDirectory;
-                if (!sourceRootValue.EndsWith("\\"))
-                {
-                    sourceRootValue += "\\";
-                };
-
-                sourceRoot.Add(new XAttribute("Include", sourceRootValue));
-                sourceRoot.Add(new XAttribute("RepositoryUrl", repositoryUrl));
-
-                // Note: since we are not allowing source control manager queries (we don't want to require a .git directory),
-                // we must specify the additional information below
-                sourceRoot.Add(new XAttribute("SourceControl", "git"));
-                sourceRoot.Add(new XAttribute("RevisionId", RepositoryCommitId));
-
-                sourceRootItemGroup.Add(sourceRoot);
-                projectElement.Add(sourceRootItemGroup);
-
-                xmlDocument.Save(projectFileName);
-
+                InjectSourceLink(projectFileName);
+                
                 // Restore packages again for the dynamic package
                 RestoreNuGetPackages(projectFileName);
             }
@@ -350,6 +312,8 @@ private void DeployTools()
         {
             throw new Exception("No NuGet repositories specified, as a protection mechanism this must *always* be specified to make sure packages aren't accidentally deployed to the default public NuGet feed");
         }
+
+        Information("Found '{0}' target NuGet servers to push tool '{1}'", nuGetServers.Count, tool);
 
         foreach (var nuGetServer in nuGetServers)
         {
