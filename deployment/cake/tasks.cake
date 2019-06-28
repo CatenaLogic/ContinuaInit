@@ -5,6 +5,7 @@
 #l "apps-web-tasks.cake"
 #l "apps-wpf-tasks.cake"
 #l "components-tasks.cake"
+#l "tools-tasks.cake"
 #l "docker-tasks.cake"
 #l "github-pages-tasks.cake"
 #l "tests.cake"

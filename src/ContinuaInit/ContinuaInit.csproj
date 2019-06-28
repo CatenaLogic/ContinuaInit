@@ -6,7 +6,10 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <PackageId>ContinuaInit</PackageId>
     <PackageVersion>1.0.0-alpha0001</PackageVersion>
-    <Description>Continua CI command line interface.</Description>
+    <Description>
+      ContinuaInit initializes several variables in a configuration for you. This console application will
+      automatically integrate with Continua CI and set several variables based on the current context.
+    </Description>
     <PackageTags>continua;ci;command;line;interface;cli</PackageTags>
   </PropertyGroup>
 

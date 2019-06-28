@@ -18,8 +18,8 @@ public class NuGetServer
 
 public List<NuGetServer> GetNuGetServers(string urls, string apiKeys)
 {
-    var splittedUrls = string.Split(new [] { ";" }, StringSplitOptions.None);
-    var splittedApiKeys = string.Split(new [] { ";" }, StringSplitOptions.None);
+    var splittedUrls = urls.Split(new [] { ";" }, StringSplitOptions.None);
+    var splittedApiKeys = apiKeys.Split(new [] { ";" }, StringSplitOptions.None);
 
     if (splittedUrls.Length != splittedApiKeys.Length)
     {

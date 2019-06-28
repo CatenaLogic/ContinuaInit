@@ -342,8 +342,8 @@ private void DeployTools()
         LogSeparator("Deploying tool '{0}'", tool);
 
         var packageToPush = string.Format("{0}/{1}.{2}.nupkg", OutputRootDirectory, tool, VersionNuGet);
-        var nuGetRepositoryUrls = GetToolNuGetRepositoryUrls(tool);
-        var nuGetRepositoryApiKeys = GetToolNuGetRepositoryApiKeys(tool);
+        var nuGetRepositoryUrls = GetToolsNuGetRepositoryUrls(tool);
+        var nuGetRepositoryApiKeys = GetToolsNuGetRepositoryApiKeys(tool);
 
         var nuGetServers = GetNuGetServers(nuGetRepositoryUrls, nuGetRepositoryApiKeys);
         if (nuGetServers.Count == 0)
@@ -357,8 +357,8 @@ private void DeployTools()
 
             NuGetPush(packageToPush, new NuGetPushSettings
             {
-                Source = nuGetRepositoryUrl,
-                ApiKey = nuGetRepositoryApiKey
+                Source = nuGetServer.Url,
+                ApiKey = nuGetServer.ApiKey
             });
         }
     }
