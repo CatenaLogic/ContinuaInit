@@ -13,7 +13,7 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
     <PackageOutputPath>$(ProjectDir)..\..\output\$(Configuration)\</PackageOutputPath>
-    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb;.xml</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb;.xml;.txt</AllowedOutputExtensionsInPackageBuildOutputFolder>
     <Deterministic>False</Deterministic>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
