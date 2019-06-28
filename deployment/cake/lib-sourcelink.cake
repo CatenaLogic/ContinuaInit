@@ -1,5 +1,15 @@
 public void InjectSourceLinkInProjectFile(string projectFileName)
 {
+    // For SourceLink to work, the .csproj should contain something like this:
+    // <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-63127-02" PrivateAssets="all" />
+    var projectFileContents = System.IO.File.ReadAllText(projectFileName);
+    if (projectFileContents.Contains("Microsoft.SourceLink.GitHub"))
+    {
+        return;
+    }
+
+    Warning("No SourceLink reference found, automatically injecting SourceLink package reference now");
+
     //const string MSBuildNS = (XNamespace) "http://schemas.microsoft.com/developer/msbuild/2003";
 
     var xmlDocument = XDocument.Parse(projectFileContents);
@@ -39,4 +49,7 @@ public void InjectSourceLinkInProjectFile(string projectFileName)
     projectElement.Add(sourceRootItemGroup);
 
     xmlDocument.Save(projectFileName);
+
+    // Restore packages again for the dynamic package
+    RestoreNuGetPackages(projectFileName);
 }

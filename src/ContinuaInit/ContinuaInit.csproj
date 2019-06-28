@@ -1,6 +1,6 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras">
   <PropertyGroup>
-    <TargetFrameworks>net47;netcoreapp3.0</TargetFrameworks>
+    <TargetFrameworks>net47</TargetFrameworks>
     <AssemblyName>ContinuaInit</AssemblyName>
     <RootNamespace>ContinuaInit</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>

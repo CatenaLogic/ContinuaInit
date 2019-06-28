@@ -157,18 +157,7 @@ private void BuildComponents()
             msBuildSettings.WithProperty("RepositoryUrl", repositoryUrl);
             msBuildSettings.WithProperty("RevisionId", RepositoryCommitId);
 
-            // For SourceLink to work, the .csproj should contain something like this:
-            // <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-63127-02" PrivateAssets="all" />
-            var projectFileContents = System.IO.File.ReadAllText(projectFileName);
-            if (!projectFileContents.Contains("Microsoft.SourceLink.GitHub"))
-            {
-                Warning("No SourceLink reference found, automatically injecting SourceLink package reference now");
-
-                InjectSourceLinkInProjectFile(projectFileName);
-
-                // Restore packages again for the dynamic package
-                RestoreNuGetPackages(projectFileName);
-            }
+            InjectSourceLinkInProjectFile(projectFileName);
         }
 
         MSBuild(projectFileName, msBuildSettings);

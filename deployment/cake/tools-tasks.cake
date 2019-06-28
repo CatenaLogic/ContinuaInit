@@ -157,18 +157,7 @@ private void BuildTools()
             msBuildSettings.WithProperty("RepositoryUrl", repositoryUrl);
             msBuildSettings.WithProperty("RevisionId", RepositoryCommitId);
 
-            // For SourceLink to work, the .csproj should contain something like this:
-            // <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-63127-02" PrivateAssets="all" />
-            var projectFileContents = System.IO.File.ReadAllText(projectFileName);
-            if (!projectFileContents.Contains("Microsoft.SourceLink.GitHub"))
-            {
-                Warning("No SourceLink reference found, automatically injecting SourceLink package reference now");
-
-                InjectSourceLink(projectFileName);
-                
-                // Restore packages again for the dynamic package
-                RestoreNuGetPackages(projectFileName);
-            }
+            InjectSourceLinkInProjectFile(projectFileName);
         }
 
         MSBuild(projectFileName, msBuildSettings);
@@ -255,6 +244,11 @@ private void PackageTools()
         // uses obj/release instead of [outputdirectory]
         msBuildSettings.WithProperty("DotNetPackIntermediateOutputPath", outputDirectory);
         
+        // As described in the this issue: https://github.com/NuGet/Home/issues/4360
+        // we should not use IsTool, but set BuildOutputTargetFolder instead
+        msBuildSettings.WithProperty("BuildOutputTargetFolder", "tools");
+        //msBuildSettings.WithProperty("IsTool", "true");
+
         msBuildSettings.WithProperty("NoBuild", "true");
         msBuildSettings.Targets.Add("Pack");
 
