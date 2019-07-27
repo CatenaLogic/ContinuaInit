@@ -17,8 +17,7 @@ namespace ContinuaInit.Integration
         {
 #if DEBUG
             return true;
-#endif
-
+#else
             const string KeyName = @"Software\VSoft Technologies\Continua CI Agent";
 
             if (RegistryKeyExists(KeyName, RegistryView.Registry32))
@@ -32,6 +31,7 @@ namespace ContinuaInit.Integration
             }
 
             return false;
+#endif
         }
 
         public override string GenerateSetVersionMessage(BuildVersionParameter parameter)
