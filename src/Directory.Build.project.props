@@ -5,7 +5,6 @@
 
   <PropertyGroup>
     <Authors>catenalogic</Authors>
-    <PackageIconUrl>https://raw.githubusercontent.com/CatenaLogic/ContinuaInit/develop/design/logo/logo_128.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/CatenaLogic/ContinuaInit</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/CatenaLogic/ContinuaInit</RepositoryUrl>
